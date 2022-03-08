@@ -8,49 +8,49 @@ const router = express.Router()
 
 // Get tweet by id
 router.get('/:id', async (req, res) => {
-    const tweet = await Tweet.findById(req.params.id).populate('author', 'name')
-    res.send(tweet)
+  const tweet = await Tweet.findById(req.params.id).populate('author', 'name')
+  res.send(tweet)
 })
 
 // Get all tweets
 router.get('/', async (req, res) => {
-    const tweets = await Tweet.find().populate('author', 'name').sort('lastModifiedAt')
-    res.send(tweets)
+  const tweets = await Tweet.find().populate('author', 'name').sort('lastModifiedAt')
+  res.send(tweets)
 })
 
 // Post new tweet
 router.post('/', auth, async (req, res) => {
-    const {error} = validate(req.body)
-    if (error) {
-        return res.status(400).send(error.details[0].message)
-    }
-    const tweet = new Tweet({
-        content: req.body.content,
-        author: req.user._id
-    })
-    await tweet.save()
-    
-    res.send(tweet)
+  const {error} = validate(req.body)
+  if (error) {
+    return res.status(400).send(error.details[0].message)
+  }
+  const tweet = new Tweet({
+    content: req.body.content,
+    author: req.user._id
+  })
+  await tweet.save()
+  
+  res.send(tweet)
 })
 
 // Modify tweet
 router.put('/:id', auth, async (req, res) => {
-    const {error} = validate(req.body)
-    if (error) {
-        return res.status(400).send(error.details[0].message)
-    }
-    const tweet = await Tweet.findById(req.params.id)
-    if (!tweet) {
-        return res.status(404).send('Tweet not found!')
-    }
+  const {error} = validate(req.body)
+  if (error) {
+    return res.status(400).send(error.details[0].message)
+  }
+  const tweet = await Tweet.findById(req.params.id)
+  if (!tweet) {
+    return res.status(404).send('Tweet not found!')
+  }
 
-    if (req.user._id.toString() !== tweet.author.toString()) {
-        return res.status(403).send('Permission denied!')
-    }
+  if (req.user._id.toString() !== tweet.author.toString()) {
+    return res.status(403).send('Permission denied!')
+  }
 
-    tweet.content = req.body.content
-    await tweet.save()
-    res.send(tweet)
+  tweet.content = req.body.content
+  await tweet.save()
+  res.send(tweet)
 })
 
 module.exports = router
