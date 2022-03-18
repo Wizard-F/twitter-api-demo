@@ -8,7 +8,7 @@ This is a Twitter api demo with minimal functionality. It has been deployed on H
 ## User
 - create a new user: `POST` to `/api/users` with `name`, `email`, and `password`
 - get all users: `GET` to `/api/users`
-- user login: `POST` to `/api/auth` with `email` and `password`, and get a JSON web token in response
+- user login: `POST` to `/api/auth` with `email` and `password`, and get a user object (with a JSON Web Token property named "token") in response
 ## Tweet
 - create a new tweet: `POST` to `/api/tweets` with `content` in body and `x-auth-token` in header
 - update a tweet: `PUT` to `/api/tweets/:id` with `content` in body and `x-auth-token` in header. The token should match the author of the tweet to be updated.
