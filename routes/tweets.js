@@ -8,8 +8,12 @@ const router = express.Router()
 
 // Get tweet by id
 router.get('/:id', async (req, res) => {
-  const tweet = await Tweet.findById(req.params.id).populate('author', 'name')
-  res.send(tweet)
+  try {
+    const tweet = await Tweet.findById(req.params.id).populate('author', 'name')
+    res.send(tweet)
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 // Get all tweets
