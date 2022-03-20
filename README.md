@@ -14,3 +14,4 @@ This is a Twitter api demo with minimal functionality. It has been deployed on H
 - update a tweet: `PUT` to `/api/tweets/:id` with `content` in body and `x-auth-token` in header. The token should match the author of the tweet to be updated.
 - get all tweets: `GET` to `/api/tweets` 
 - get a tweet by id: `GET` to `/api/tweets/:id`
+- delete a tweet: `DELETE` to `/api/tweets/:id` with and `x-auth-token` in header. The token should match the author of the tweet to be deleted.
