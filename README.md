@@ -1,4 +1,4 @@
-This is a Twitter api demo with minimal functionality. It has been deployed on Heroku at https://twitter-api-demo-heroku.herokuapp.com.
+This is a Twitter api demo with minimal functionality. It has been deployed on Heroku at https://twitter-api-demo-heroku.herokuapp.com. The deployment is used by https://twitter-frontend-demo.herokuapp.com.
 # Tech Stack
 - Express + Mongoose(MongoDB)
 - Validation by Joi
